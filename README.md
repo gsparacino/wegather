@@ -3,7 +3,8 @@
 A simple web application to manage appointments and social events. Developed for the ["Design Lab" course @ UniMib](https://elearning.unimib.it/course/info.php?id=44590&lang=en)
 
 Contributors:
-Bonomo Mirco
+
+Bonomo Mirco \
 Sparacino Gabriele 
 
 
