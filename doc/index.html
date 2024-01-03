@@ -1,0 +1,58 @@
+---
+layout: default
+title: Home
+order: 1
+---
+
+<div class="home">
+
+	<h2 class="page-heading">Il Progetto</h2>
+	<p>Progetto sviluppato per il corso “Laboratorio di Progettazione” del secondo anno della Magistrale Informatica presso l’Università di Milano Bicocca.</p>
+  
+	<h3>Descrizione generale</h3>
+	<p>L’applicazione ha lo scopo di fornire uno strumento intuitivo e semplice per l’organizzazione di eventi di gruppo permettendo a tutti gli invitati di proporre e votare sia le date che le attività che desiderano svolgere.
+	Il software è stato sviluppato a partire da un progetto già esistente che non soddisfava tutte le funzionalità richieste ma ha fornito un buon punto di partenza.
+	</p>
+
+	<h3>Informazioni Tecniche</h3>
+	<p><b>Repository:</b> https://gitlab.com/g.sparacino3/wegather</p>
+	<p><b>Architettura:</b> MVC</p>
+	<p><b>Linguaggio:</b> Java</p>
+	<p><b>Framework:</b> SpringBoot</p>
+	<p><b>Database:</b> H2 in memory</p>
+
+	<h3>Dipendenze</h3>
+	<h4>Hibernate</h4>
+	<p>Tool utilizzato per l'Object-relational mapping (ORM) tra il database relazionale utilizzato (H2) e le classi Java.
+La scelta è ricaduta su questa tecnologia per l’elevata compatibilità e integrazione con il framework SpringBoot.
+	</p>
+
+	<h4>Thymeleaf</h4>
+	<p>
+		Java Template engine utilizzato per implementare il pattern "Template-View" permettendo di creare pagine web dinamiche a partire da template html.
+		Scelto perchè molto ben integrato con Spring Framework.
+	</p>
+
+
+	<h4>H2</h4>
+	<p>
+		Databese SQL per lo storage dei dati dell’applicazione.
+		La scelta è ricaduta su questa tecnologia poiché open Soruce, gratuita ma molto veloce per carichi di lavoro e quantità di dati richiesti dall’applicazione.
+	</p>
+
+	<h4>Jekill</h4>
+	<p>
+		Generatore di siti statici utilizzato per semplificare la costruzione della documentazione.
+		La scelta è ricaduta su questa tecnologia perchè permette di definire un layout che viene applicato automaticamente a tutte le pagine del sito senza che se ne preoccupi chi scrive i contenuti, è inoltre capace di generare il sito sia a partire da file html che .md.
+	</p>
+
+
+	<h4>GitLab Pages</h4>
+	<p>
+		Il progetto sfrutta pages per la pubblicazione della documentazione sotto forma di sito statico.
+		La scelta è ricaduta su questa tecnologia poichè facilmente integrabile nella pipeline di GitLab e permette quindi di mantenere la documentazione automaticamente aggiornata.
+	</p>
+
+	
+
+</div>

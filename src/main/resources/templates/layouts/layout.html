@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">WeGather</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link media="screen" rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<style>
+    .container {
+        padding: 25px 5px;
+    }
+    nav.navbar.navbar-expand-lg {
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
+    .logged-info {
+        color: white;
+    }
+    .logged-info p {
+        margin: auto;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .search-container {
+        margin-right: 5em;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown a:hover {background-color: #ddd;}
+
+    .show {display: block;}
+
+    a { cursor: pointer; }
+
+    .form-wrapper {
+        margin: auto;
+        width: 25vw;
+        /* border: solid 1px grey; */
+        border-radius: 1vw;
+        padding: 2%;
+        text-align: center;
+        box-shadow: 0 6px 40px 0 rgb(0 0 0 / 30%);
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/lista">WeGather</a>
+    <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor01" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/lista">Eventi</a>
+            </li>
+        </ul>
+        <a href="#">
+            <div class="logged-info dropdown">
+                <p class="dropbtn" id="logged-in-username" onclick="dropdownMenu()"/>
+                <div class="dropdown-content" id="userDropdown">
+                    <a href="/utente">Dettagli</a>
+                    <a href="/login">Logout</a>
+                </div>
+            </div>
+        </a>
+    </div>
+</nav>
+
+<div class="container" layout:fragment="content">
+</div>
+<script>
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+    document.getElementById("logged-in-username").innerHTML = "Ciao, " + getCookie("username");
+
+    function dropdownMenu() {
+        document.getElementById("userDropdown").classList.toggle("show");
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

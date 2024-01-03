@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+        <html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/layout}" lang="en" xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <meta charset="UTF-8">
+        <title>Lista Proposte</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container" layout:fragment="content">
+
+    <h3>Proposte Evento </h3>
+
+
+    <form method="post" th:action="@{/addProposta}">
+        <input type="hidden" name="id" th:value="${evento.id}">
+        <input type="date" name="date">
+        <input type="submit" class="btn btn-primary" value="Salva">
+    </form>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Data</th>
+            <th>Azioni</th>
+        </tr>
+        <tr th:each="proposta: ${proposte}">
+            <td th:text="${proposta.data}"/>
+            <td>
+                <!--<a  class="btn btn-primary" th:href="@{/removeProposta/?idProposta={id}&idEvento={idEvento}(id=${proposta.id})(idEvento=${evento.id})}">Rimuovi</a>-->
+                <a  class="btn btn-primary" th:href="@{'/removeProposta/?idProposta=' + ${proposta.id} + '&idEvento=' + ${evento.id}}">Rimuovi</a>
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+
+</body>
+</html>

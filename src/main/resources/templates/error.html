@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        .error-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="error-container">
+        <img alt="sad face" height="460" width="480" th:src="@{/images/sad_face.png}">
+        <h2>Si è verificato un errore inatteso</h2>
+        <a class="btn btn-primary" href="/" type="button">Ritorna alla Home</a>
+    </div>
+</div>
+</body>
+</html>

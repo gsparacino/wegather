@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettagli</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="login-form-wrapper">
+        <h2 th:text="'Sei collegato come ' + ${username} + '.'"></h2>
+        <p>Riepilogo dati.</p>
+        <ul>
+            <li><b>Nome</b>: <p th:text="${utente.nome}"/></li>
+            <li><b>Cognome</b>: <p th:text="${utente.cognome}"/></li>
+            <li><b>Email</b>: <p th:text="${utente.email}"/></li>
+            <li><b>Telefono</b>: <p th:text="${utente.telefono}"/></li>
+        </ul>
+        <div><a class="btn btn-primary" th:href="@{/info}">Modifica Profilo</a></div>
+        <br>
+        <form action="#" method="post" th:action="@{/utente/delete}" th:object="${utente}">
+            <input name="id" th:value="${utente.id}" type="hidden">
+            <input class="btn btn-danger" type="submit" value="Cancella profilo"/>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

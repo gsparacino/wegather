@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+      <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+	  <style>
+		p {
+			color: rgb(70, 72, 83);
+		}
+		.navbar-nav {
+			font-weight: bold;
+		}
+		#footer a {
+			color: #212529;
+			text-decoration: none;
+			font-weight: bold;
+		}
+		.bg-light {
+			background-color: rgb(32 173 174) !important;
+		}
+		#footer {
+			background-color: #f4f4f4 !important;
+			margin-top: 4rem;
+		}
+		nav.navbar.navbar-light .navbar-nav a.nav-link {
+			color: white;
+		}
+		pre {
+			background-color: #f0f0f0;
+			padding-top: 1rem;
+		}
+		h2, h3 {
+			margin-top: 2.5rem;
+		}
+	  </style>
+  </head>
+  <body style="font-size: 1.4rem;">
+	<div class="p-3 text-center">
+	  <h1 style="font-size: 4.3rem;letter-spacing: -0.05em;font-weight: bolder;">We Gather</h1>
+	  <p>Documentazione</p> 
+	</div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top justify-content-center">
+	  <div class="container-fluid">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+		  <ul class="navbar-nav">
+			{% assign sorted_pages = site.pages | sort:"order" %}
+		  	{% for my_page in sorted_pages %}
+			  {% if my_page.title %}
+			  	<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
+				</li>
+			  {% endif %}
+			{% endfor %}
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+	<div class="container p-2" style="min-height: 90vh;">
+		{{ content }}
+	</div>
+	<div class="mt-8 p-5 bg-light text-white text-center" id="footer" style="min-height: 10vh;">
+		<p><a href="https://gitlab.com/g.sparacino3/wegather">GitLab repo</a></p>
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

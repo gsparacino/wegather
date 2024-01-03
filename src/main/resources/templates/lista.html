@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <p th:text="'Bevenuto ' + ${nome} + '!'"/>
+    <div>
+        <span><a class="btn btn-primary" href="/evento?tipo=casa">Crea evento in casa</a></span>
+        <span><a class="btn btn-primary" href="/evento?tipo=locale">Crea evento in locale</a></span>
+    </div>
+
+    <div>
+
+    </div>
+
+    <!-- Controlla se ci sono eventi connessi all'utente -->
+    <div th:if="${#lists.isEmpty(eventi.organizzatore) and #lists.isEmpty(eventi.partecipante)}">
+        <p>Non ci sono eventi da mostrare.</p>
+    </div>
+    <!-- Controlla se ci sono eventi organizzati dall'utente -->
+    <div th:unless="${#lists.isEmpty(eventi.organizzatore)}">
+        <h3>Eventi organizzati</h3>
+        <table class="table table-bordered">
+            <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Descrizione</th>
+                <th>Invitati</th>
+                <th>Azioni</th>
+            </tr>
+            <tr th:each="evento: ${eventi.organizzatore}">
+                <td th:text="${evento.nome}"/>
+                <td th:text="${evento.tipo}"/>
+                <td th:text="${evento.descrizione}"/>
+                <td th:text="${evento.partecipanti}"/>
+                <td>
+                    <a class="btn btn-primary" th:href="@{/evento/{id}(id=${evento.id})}" type="button">Modifica</a>
+                    <a  class="btn btn-primary" th:href="@{/invitati/?id={id}(id=${evento.id})}">Invitati</a>
+                    <a  class="btn btn-primary" th:href="@{/proposte/?id={id}(id=${evento.id})}">Proposte</a>
+                    <a class="btn btn-danger" th:href="@{/evento/{id}/delete(id=${evento.id})}" type="button">Elimina</a>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+    </div>
+    <!-- Controlla se ci sono eventi a cui l'utente è invitato -->
+    <div th:unless="${#lists.isEmpty(eventi.partecipante)}">
+        <h3>Inviti</h3>
+        <table class="table table-bordered">
+            <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Descrizione</th>
+                <th>Proposte</th>
+                <th>Partecipanti</th>
+                <th>Organizzatore</th>
+            </tr>
+            <tr th:each="evento: ${eventi.partecipante}">
+                <td th:text="${evento.nome}"/>
+                <td th:text="${evento.tipo}"/>
+                <td th:text="${evento.descrizione}"/>
+                <td>
+                    <div th:each="proposta: ${evento.proposte}"><p th:text="${proposta}"></div>
+                </td>
+                <td th:text="${evento.partecipanti}"/>
+                <td th:text="${evento.organizzatore.username}"/>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

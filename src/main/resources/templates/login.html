@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login | WeGather</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+    .login-form-wrapper {
+    margin: auto;
+    width: 25vw;
+    /* border: solid 1px grey; */
+    border-radius: 1vw;
+    padding: 2%;
+    text-align: center;
+    box-shadow: 0 6px 40px 0 rgb(0 0 0 / 30%);
+    }
+    .container {
+    padding: 25px 5px;
+    }
+
+</style>
+<div class="container">
+    <div class="login-form-wrapper">
+        <h1>We Gather</h1>
+        <p>Inserisci il tuo username. Se questo non è già presente a database, ti verrà richiesto di creare un nuovo utente.</p>
+        <form action="#" method="post" th:action="@{/login}" th:object="${login}">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" th:field="*{username}" placeholder="Username">
+            </div>
+            <input type="submit" class="btn btn-lg btn-primary" value="Submit"/>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Evento</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="form-wrapper">
+        <h3>Dati dell'evento</h3>
+        <h5 th:if="${tipo} == 'casa'">Evento in casa</h5>
+        <h5 th:if="${tipo} == 'locale'">Evento in locale</h5>
+        <div><br></div>
+        <form action="#" method="post" th:action="@{/evento/} + ${tipo}" th:object="${evento}">
+            <input name="idEvento" th:field="*{id}" type="hidden">
+            <div class="form-group">
+                <label>Nome</label>
+                <input class="form-control" id="nome" th:field="*{nome}" th:placeholder="${nome}" type="text">
+            </div>
+            <div class="form-group">
+                <label>Descrizione</label>
+                <input class="form-control" id="descrizione" th:field="*{descrizione}" th:placeholder="${descrizione}"
+                       type="text">
+            </div>
+            <div class="form-group">
+                <label>Indirizzo</label>
+                <input class="form-control" id="indirizzo" th:field="*{indirizzo}" th:placeholder="${indirizzo}"
+                       type="text">
+            </div>
+            <div class="form-group">
+                <label>Evento precedente</label>
+                <select class="form-control" id="eventoPrecedente" th:field="${evento.eventoPrecedente.id}">
+                    <option value="-1">Nessuno</option>
+                    <option th:each="opzione : ${eventiOrganizzati}" th:text="${opzione.nome}"
+                            th:value="${opzione.id}"></option>
+                </select>
+            </div>
+            <div th:if="${tipo} == 'casa'">
+                <div class="form-group">
+                    <label>Citofono</label>
+                    <input class="form-control" id="citofono" th:field="*{citofono}" th:placeholder="${citofono}"
+                           type="text">
+                </div>
+            </div>
+            <div th:if="${tipo} == 'locale'">
+                <div class="form-group">
+                    <label>Nome Locale</label>
+                    <input class="form-control" id="locale" th:field="*{locale}" th:placeholder="${locale}"
+                           type="text">
+                </div>
+                <div class="form-group">
+                    <label>Costo Partecipazione</label>
+                    <input class="form-control" id="costo" th:field="*{costo}" th:placeholder="${costo}"
+                           type="number">
+                </div>
+            </div>
+            <div>
+                <input class="btn btn-lg btn-primary" type="submit" value="Salva"/>
+                <input class="btn btn-lg btn-secondary" type="reset" value="Reset"/>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

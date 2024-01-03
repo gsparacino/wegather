@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Elenco partecipanti</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <h3 th:text="${evento.nome}"></h3>
+    <h4> Partecipanti </h4>
+
+
+    <div>
+        <form method="post" th:action="@{/invitati}">
+            <input name="idEvento" th:value="${evento.id}" type="hidden">
+            <div><br></div>
+            <div th:each="utente: ${utentiInvitati}">
+                <input checked name="idInvitati" th:id="${utente.id}" th:text="${utente.username}"
+                       th:value="${utente.id}" type="checkbox">
+            </div>
+            <div th:each="utente: ${utentiNonInvitati}">
+                <input name="idInvitati" th:id="${utente.id}" th:text="${utente.username}" th:value="${utente.id}"
+                       type="checkbox">
+            </div>
+            <div><br></div>
+            <div>
+                <input class="btn btn-primary" type="submit" value="Salva">
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

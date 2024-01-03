@@ -1,0 +1,43 @@
+---
+layout: default
+title: Documentare
+order: 3
+---
+
+<h2>Gestione della documentazione</h2>
+<p>La documentazione viene automaticamente pubblicata come sito statico su Pages di GitLab attraverso l'utilizzo di jackill. La sua pubblicazione è automatizzata nella pipeline di GitLab nello stage "doc".</p>
+
+<h3>Inserire una nuova pagina</h3>
+<ul>
+    <li>Aggiungere un file .html nella cartella <i>"doc/"</i></li>
+    <li>Inserire nel file .html il contenuto desiderato preceduto dall'intestazione come nell'esempio seguente:
+        <pre>
+            ---
+            layout: default
+            title: TitoloPagina
+            order: 2
+            ---
+            &lt;h2&gt;Titolo della pagina&lt;/h2&gt;
+            &lt;p&gt;Esempio di contenuto della pagina.&lt;/p&gt;
+        </pre>
+        L'intestazione specifica:
+        <ul>
+            <li><b>layout:</b> layout che in cui verrà inserito il contenuto della pagina una volta pubblicata (tra quelli disponibili nella cartella <i>"doc/_layouts"</i></li>
+            <li><b>title:</b> la voce di menu con cui verrà linkata la pagina alla documentazione</li>
+            <li><b>order:</b> la posizione che avrà la pagina nel menu della documentazione</li>
+        </ul>
+    </li>
+</ul>
+<p>In questo modo Jakill, eseguita la pipeline GitLab, inserirà automaticamente la pagina nella documentazione e la linkerà nel menu.</p>
+
+<h3>Inserire un diagramma app.diagrams.net in una pagina</h3>
+<ul>
+    <li>Esportare il diagramma dal sito <a href="https://app.diagrams.net/" target="_blank">app.diagrams.net</a> in formato <i>html</i> facendo attenzione ad impostare <i>"Includi una copa del mio diagramma"</i> nella configurazione dell'esportazione. </li>
+    <li>Aggiungere il file appena esportato nella cartella <i>"doc/_includes"</i>.</li>
+    <li>Inserire il diagramma nella pagina html desiderata aggiungendo:
+        <pre>
+            &#123;&#37; include nomediagramma.html &#37;&#125;
+        </pre>
+    </li>
+</ul>
+<p>In questo modo Jakill sostituirà tale riga con il diagramma desiderato. Inoltre, avendo esportato il file con inclusa una copia del diagramma, sarà possibile modificarlo facilmente caricandolo su <a href="https://app.diagrams.net/" target="_blank">app.diagrams.net</a> quando necessario. </p>

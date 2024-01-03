@@ -1,0 +1,67 @@
+---
+layout: default
+title: Architettura
+order: 2
+---
+
+<h2>Architettura</h2>
+<h3>Componenti</h3>
+<p>
+    L'architettura dell'applicazione prevede quattro componenti principali:
+</p>
+<ul>
+    <li><b>View:</b> template HTML che contengono logiche di presentazione dei dati e recepiscono l'input dell'utente.</li>
+    <li><b>Controller:</b> classi che predispongono il Model per la visualizzazione, ricevono l'input dell'utente e gestiscono le logiche di navigazione tra le View.
+        Ogni controller è associato univocamente ad una View.</li>
+    <li><b>Service:</b> classi che eseguono la logica di business dell'applicazione. Idealmente, ogni Service contiene la logica di uno specifico use case. </li>
+    <li><b>Repository:</b> classi che interagiscono con il database tramite query SQL, gestendo il mapping e la persistenza delle Entity. Ogni Repository è associato univocamente ad una Entity. </li>
+</ul>
+
+<p>
+    E stato scelto di organizzare il codice con una separazione molto accentuata tra i vari moduli che lo compongono, principio che permette di ottenere
+    componenti che non dipendono (o lo fanno il meno possibile) tra loro e che quindi è possibile sviluppare in completa autonomia e potranno continuare ad
+    evolvere allo stesso modo.
+</p>
+
+<p>
+    L'implementazione segue quindi la logica dell'esempio sottostante:
+</p>
+<div>
+    {% include components.html %}
+</div>
+
+<h3>Alberatura cartelle</h3>
+<p>La separazione architetturale si riflette nell'alberatura delle cartelle che compongono il progetto:</p>
+<ul>
+    <li>fontend: contiene una cartella per ogni pagina/flusso dell'applicazione. Ciascuna cartella contiene al suo interno il modello, il model mapper e il controller</li>
+    <li>backend: contiene tutte le classi entity e repository</li>
+    <li>service: cotniene tutte le classi service con la logica di business dell'applicazione (generalmente uno per ogni use case)</li>
+    <li>templates: contine tutte le pagine html dell'app. All'interno della cartella "template/layouts" è stato poi definito un layout della UI che tutte le pagine ereditano contenente il menu di navigazione,
+        lo stile e i js di utilità comune a tutta l'app.</li>
+</ul>
+
+
+
+<h3>Pattern</h3>
+<p>
+    La parte di front-end del progetto è stata strutturata utilizzando il pattern architetturale MVC al fine di favorire la separazione tra i modelli
+    e la logica di presentazione
+</p>
+
+
+<p>
+    Sono stati inoltre utilizzati i pattern "PageController" e "Template-View": il primo è adottato per suddividere il progetto in sezioni ben separete,
+    mentre il secondo permette di scrivere delle pagine in modo dinamico a partire da un template comune senza ripetere codice.
+</p>
+
+
+<p>
+    Per la parte di back-end sono stati implementati dei "Repository" che sfruttano le funzionalità offerte dalla libreria Spring Data, un'estensione di Hibernate.
+    La funzione dei Repository è disaccoppiare la logica di business dai mapper, lasciando alla libreria il compito di gestire la maggior parte della logica di
+    trasformazione dei dati e di persistenza.
+</p>
+
+<h3>Entità</h3>
+<div>
+    {% include entities.html username=site.github_username %}
+</div>
